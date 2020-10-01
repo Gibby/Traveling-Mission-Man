@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Traveling Mission Man</h1>
+<p>Input system names, cAsE SeNsiTivE, with up to, 2 per line separated by a comma, and it will constrain the search so that those two systems
+are done in order.
+</p>
+<form>
+<form action="/getRoutes.php" method="post">
+
+  <label for="MISSIONS">Missions:</label><br>
+  <textarea name="missions" rows="10" cols="30" required=true></textarea><br>
+
+  <label for="NULLSEC">Include Null Sec?</label><br>
+  <input type="checkbox" id="NULLSEC" name="NULLSEC"><br>
+
+  <input type="submit" formenctype="multipart/form-data" value="Submit"><br>
+
+</form>
+</body>
+</html>
