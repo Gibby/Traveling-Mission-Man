@@ -27,7 +27,7 @@ def check_name(name, system_ids, total_systems):
     return True
 
 
-def main():
+def main(mission_lines):
     names = {}
     system_ids = {}
     with open("systems.csv") as system_names:
@@ -43,28 +43,27 @@ def main():
     found_systems = True
     total_lines = 0
     constraints = {}
-    with open('missions.txt') as input_file:
-        for line in input_file:
-            found_system_one = True
-            found_system_two = True
-            total_lines += 1
-            array = line.lower().strip().split(',')
-            system_one_name = array[0].strip()
-            found_system_one = check_name(system_one_name, system_ids, total_lines)
-            if found_system_one and system_one_name != "":
-                system_one_id = system_ids[system_one_name]
-                mission_systems.append(system_one_id)
-                constraints[system_one_id] = None
-            if len(array) > 2:
-                print("Line", total_lines, ": Only 2 systems per line in constraints system.")
-            elif len(array) == 2:
-                system_two_name = array[1].strip()
-                found_system_two = check_name(system_two_name, system_ids, total_lines)
-                if found_system_two and system_two_name != "":
-                    system_two_id = system_ids[system_two_name]
-                    constraints[system_two_id] = system_one_id
-                    mission_systems.append(system_two_id)
-            found_systems = found_systems and found_system_one and found_system_two
+    for line in mission_lines.splitlines():
+        found_system_one = True
+        found_system_two = True
+        total_lines += 1
+        array = line.lower().strip().split(',')
+        system_one_name = array[0].strip()
+        found_system_one = check_name(system_one_name, system_ids, total_lines)
+        if found_system_one and system_one_name != "":
+            system_one_id = system_ids[system_one_name]
+            mission_systems.append(system_one_id)
+            constraints[system_one_id] = None
+        if len(array) > 2:
+            print("Line", total_lines, ": Only 2 systems per line in constraints system.")
+        elif len(array) == 2:
+            system_two_name = array[1].strip()
+            found_system_two = check_name(system_two_name, system_ids, total_lines)
+            if found_system_two and system_two_name != "":
+                system_two_id = system_ids[system_two_name]
+                constraints[system_two_id] = system_one_id
+                mission_systems.append(system_two_id)
+        found_systems = found_systems and found_system_one and found_system_two
     start_system = [mission_systems.pop(0)]
     if found_systems is False:
         print("Could not find all the systems in missions.txt, please check and retry.")
@@ -107,4 +106,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(mission_lines)

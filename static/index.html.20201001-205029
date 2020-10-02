@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+</head>
+<body>
+
+<h1>Traveling Mission Man</h1>
+<h2>Does NOT work yet</h2>
+<p>Input system names, cAsE SeNsiTivE, with up to, 2 per line separated by a comma, and it will constrain the search so that those two systems
+are done in order.
+</p>
+<form>
+<form action="/getRoutes" method="post">
+
+  <label for="MISSIONS">Missions:</label><br>
+  <textarea name="missions" rows="10" cols="30" required=true></textarea><br>
+
+  <label for="NULLSEC">Include Null Sec?</label><br>
+  <input type="checkbox" id="NULLSEC" name="NULLSEC"><br>
+
+  <div class="g-recaptcha" data-sitekey="6LcYrNIZAAAAAKU1gJiYUjoHeFAAmEiSSqXITnv8" class="form-control" style="width:100%;"></div>
+  <button type="button" onClick="submitToAPI(event)" class="btn btn-lg" style="margin-top:20px;">Submit</button>
+
+</form>
+</body>
+</html>
